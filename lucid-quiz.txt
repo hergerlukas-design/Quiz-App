@@ -1,0 +1,24 @@
+LUCID AIR GRAND TOURING - TECH SPECS & QUIZ
+
+--- TECHNISCHE DATEN ---
+[span_0](start_span)Modell: 2025 Lucid Air Grand Touring (Europa)[span_0](end_span)
+[span_1](start_span)Leistung: 611 kW (831 PS)[span_1](end_span)
+[span_2](start_span)Drehmoment: 1.200 Nm[span_2](end_span)
+[span_3](start_span)Batterie: 117 kWh[span_3](end_span)
+[span_4](start_span)Architektur: 900+ V[span_4](end_span)
+[span_5](start_span)DC-Laden: Bis zu 300 kW[span_5](end_span)
+[span_6](start_span)0-100 km/h: 3,2 s[span_6](end_span)
+[span_7](start_span)Vmax: 270 km/h[span_7](end_span)
+[span_8](start_span)Reichweite (19"): 960 km (WLTP kombiniert)[span_8](end_span)
+[span_9](start_span)cw-Wert (19"): 0,197[span_9](end_span)
+[span_10](start_span)Frunk-Volumen: 283 L[span_10](end_span)
+
+--- QUIZ FRAGEN ---
+Q1: Wie hoch ist die Gesamtleistung in kW? | A: 511 | B: 611 | C: 711 | D: 831 | [span_11](start_span)Korrekt: B[span_11](end_span)
+Q2: Beschleunigung 0-100 km/h in Sekunden? | A: 2,5 | B: 3,2 | C: 3,8 | D: 4,1 | [span_12](start_span)Korrekt: B[span_12](end_span)
+Q3: WLTP-Reichweite kombiniert mit 19-Zoll-Felgen? | A: 882 km | B: 824 km | C: 960 km | D: 1.015 km | [span_13](start_span)Korrekt: C[span_13](end_span)
+Q4: Maximale DC-Ladeleistung? | A: 200 kW | B: 250 kW | C: 300 kW | D: 350 kW | [span_14](start_span)Korrekt: C[span_14](end_span)
+Q5: cw-Wert mit 19-Zoll-Felgen? | A: 0,197 | B: 0,210 | C: 0,235 | D: 0,250 | [span_15](start_span)Korrekt: A[span_15](end_span)
+Q6: Volumen des vorderen Kofferraums (Frunk)? | A: 150 L | B: 283 L | C: 450 L | D: 627 L | [span_16](start_span)Korrekt: B[span_16](end_span)
+Q7: Bodenfreiheit mit 21-Zoll-Felgen? | A: 116 mm | B: 126 mm | C: 136 mm | D: 146 mm | [span_17](start_span)Korrekt: C[span_17](end_span)
+Q8: Reifenhersteller für 20-Zoll-Felgen? | A: Pirelli | B: Michelin | C: Continental | D: Bridgestone | [span_18](start_span)Korrekt: B[span_18](end_span)
