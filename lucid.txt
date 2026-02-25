@@ -1,0 +1,8 @@
+Wie hoch ist die Gesamtleistung des Lucid Air Grand Touring in kW?;511 kW;611 kW;711 kW;1
+Welche Beschleunigungszeit benötigt das Fahrzeug für den Sprint von 0 auf 100 km/h?;2,5 Sekunden;3,2 Sekunden;3,8 Sekunden;1
+Wie hoch ist die maximale WLTP-Reichweite (kombiniert) bei Verwendung der 19-Zoll-Felgen?;882 km;824 km;960 km;2
+Wie viel DC-Ladeleistung kann das Fahrzeug maximal aufnehmen?;Bis zu 200 kW;Bis zu 250 kW;Bis zu 300 kW;2
+Welchen Luftwiderstandsbeiwert (c_w-Wert) erreicht der Lucid Air mit 19-Zoll-Felgen?;0,197;0,210;0,235;0
+Wie groß ist das Volumen des vorderen Kofferraums (Frunk)?;150 L;283 L;450 L;1
+Welche Bodenfreiheit hat das Fahrzeug bei Ausstattung mit 21-Zoll-Felgen?;116 mm;126 mm;136 mm;2
+Welcher Reifenhersteller wird für die 20-Zoll-Felgen ab Werk verwendet?;Pirelli;Michelin;Continental;1
