@@ -2,35 +2,113 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Mein GitHub Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mobile Quiz App</title>
     <style>
-        body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; background: #f4f4f9; }
-        .card { background: white; padding: 20px; border-radius: 8px; shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        button { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
-        .option { display: block; margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; }
-        .option:hover { background: #e9ecef; }
+        :root {
+            --primary: #007bff;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #333;
+        }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0; 
+            padding: 15px; 
+            background: var(--bg); 
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+        }
+
+        .card { 
+            background: var(--card-bg); 
+            padding: 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+        }
+
+        h1 { font-size: 1.5rem; text-align: center; margin-bottom: 20px; }
+        
+        /* Datei-Input schöner stylen */
+        input[type="file"] {
+            width: 100%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        /* Antwort-Optionen als große Touch-Flächen */
+        .option { 
+            display: block; 
+            margin: 12px 0; 
+            padding: 16px; 
+            border: 2px solid #eee; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            transition: all 0.2s;
+            font-size: 1.1rem;
+            -webkit-tap-highlight-color: transparent; /* Verhindert blauen Kasten beim Tippen auf iOS */
+        }
+
+        .option:active { 
+            background: #e9ecef; 
+            transform: scale(0.98);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: #f0f7ff;
+        }
+
+        button { 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 15px; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-size: 1.1rem; 
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        #feedback {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+            min-height: 24px;
+        }
+
         .hidden { display: none; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h1>📝 Quiz Uploader</h1>
-    <p>Wähle deine <code>.txt</code> Datei aus:</p>
-    <input type="file" id="fileInput" accept=".txt">
-    <hr>
+    <div id="uploadArea">
+        <h1>📝 Quiz Uploader</h1>
+        <p style="text-align: center; color: #666;">Wähle deine <code>.txt</code> Datei aus:</p>
+        <input type="file" id="fileInput" accept=".txt">
+    </div>
     
     <div id="quizArea" class="hidden">
-        <h3 id="questionText">Frage erscheint hier</h3>
+        <div id="progress" style="font-size: 0.9rem; color: #888; margin-bottom: 5px;"></div>
+        <h3 id="questionText" style="margin-top: 5px;">Frage erscheint hier</h3>
         <div id="optionsContainer"></div>
         <p id="feedback"></p>
         <button id="nextBtn" class="hidden">Nächste Frage</button>
     </div>
 
-    <div id="resultArea" class="hidden">
-        <h2>Ergebnis</h2>
-        <p id="scoreText"></p>
-        <button onclick="location.reload()">Neues Quiz laden</button>
+    <div id="resultArea" class="hidden" style="text-align: center;">
+        <h2>Fertig! 🎉</h2>
+        <p id="scoreText" style="font-size: 1.2rem; margin: 20px 0;"></p>
+        <button onclick="location.reload()">Anderes Quiz laden</button>
     </div>
 </div>
 
@@ -41,8 +119,9 @@ let score = 0;
 
 document.getElementById('fileInput').addEventListener('change', function(e) {
     const file = e.target.files[0];
-    const reader = new FileReader();
+    if(!file) return;
     
+    const reader = new FileReader();
     reader.onload = function(event) {
         const lines = event.target.result.split('\n');
         questions = lines.filter(l => l.includes(';')).map(line => {
@@ -53,19 +132,20 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
                 correct: parseInt(parts[parts.length - 1])
             };
         });
-        startQuiz();
+        if(questions.length > 0) startQuiz();
     };
     reader.readAsText(file);
 });
 
 function startQuiz() {
-    document.getElementById('fileInput').classList.add('hidden');
+    document.getElementById('uploadArea').classList.add('hidden');
     document.getElementById('quizArea').classList.remove('hidden');
     showQuestion();
 }
 
 function showQuestion() {
     const q = questions[currentIndex];
+    document.getElementById('progress').innerText = `Frage ${currentIndex + 1} von ${questions.length}`;
     document.getElementById('questionText').innerText = q.q;
     const container = document.getElementById('optionsContainer');
     container.innerHTML = '';
@@ -76,19 +156,28 @@ function showQuestion() {
         const div = document.createElement('div');
         div.className = 'option';
         div.innerText = opt;
-        div.onclick = () => checkAnswer(i);
+        div.onclick = () => checkAnswer(i, div);
         container.appendChild(div);
     });
 }
 
-function checkAnswer(i) {
+function checkAnswer(i, element) {
     if (document.getElementById('nextBtn').classList.contains('hidden')) {
+        const allOptions = document.querySelectorAll('.option');
         const correct = questions[currentIndex].correct;
+        
         if (i === correct) {
             score++;
+            element.style.borderColor = "#28a745";
+            element.style.background = "#d4edda";
             document.getElementById('feedback').innerText = "✅ Richtig!";
+            document.getElementById('feedback').style.color = "#28a745";
         } else {
+            element.style.borderColor = "#dc3545";
+            element.style.background = "#f8d7da";
+            allOptions[correct].style.borderColor = "#28a745"; // Richtige Antwort zeigen
             document.getElementById('feedback').innerText = "❌ Falsch!";
+            document.getElementById('feedback').style.color = "#dc3545";
         }
         document.getElementById('nextBtn').classList.remove('hidden');
     }
@@ -106,7 +195,7 @@ document.getElementById('nextBtn').onclick = () => {
 function showResult() {
     document.getElementById('quizArea').classList.add('hidden');
     document.getElementById('resultArea').classList.remove('hidden');
-    document.getElementById('scoreText').innerText = `Du hast ${score} von ${questions.length} Fragen richtig beantwortet!`;
+    document.getElementById('scoreText').innerText = `Ergebnis: ${score} von ${questions.length} Punkten`;
 }
 </script>
 </body>
